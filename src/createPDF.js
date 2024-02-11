@@ -26,12 +26,12 @@ export default function createPDF(formData) {
   invoiceDetails(doc, formData);
 
   doc.setFillColor(245);
-  doc.rect(10, 109, 190, 8, 'F');
+  doc.rect(10, 106, 190, 8, 'F');
 
-  doc.text("TEST DESCRIPTION", 13, 114);
-  doc.text("AMOUNT", 180, 114);
+  doc.text("TEST DESCRIPTION", 13, 111);
+  doc.text("AMOUNT", 180, 111);
 
-  let y = 126;
+  let y = 120;
   for (let i = 0; i < formData.packageName.length; i++) {
     testDesc(doc, formData.packageName[i], formData.packagePrice[i], y);
     y += 9;

@@ -15,13 +15,14 @@ const packageNames = [
   "Special Male Health Care Package",
   "Standart Health Care Package",
   "Classic Health Care Package",
-  "Extended Health Care Package"
+  "Extended Health Care Package",
+  "Comprehensive Allergy Panel with Drugs"
 ];
 
-const packagePrices = [1899, 1899, 1899, 999, 2250, 3500];
+const packagePrices = [1899, 1899, 1899, 999, 2250, 3500, 12000];
 
 export default function InvoiceForm() {
-  const [checkedBox, setCheckedBox] = useState([false, false, false, false, false, false]);
+  const [checkedBox, setCheckedBox] = useState([false, false, false, false, false, false, false]);
 
   const [formData, setFormData] = useState({
     invoiceNum: '',
@@ -53,7 +54,7 @@ export default function InvoiceForm() {
 
     let updatedPakcageName = [];
     let updatedPackagePrice = [];
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < packageNames.length; i++) {
       if (updatedState[i]) {
         updatedPakcageName.push(packageNames[i]);
         updatedPackagePrice.push(packagePrices[i]);
@@ -135,7 +136,13 @@ export default function InvoiceForm() {
               Packages:
             </div>
             <div className="mb-3">
-              <Form.Check type="checkbox" id="box1" name='0' checked={checkedBox[0]} onChange={handleChangePackage}
+              {
+                packageNames.map((pkg, i) => {
+                  return <Form.Check key={i} type="checkbox" id={`box${i}`} name={`${i}`} checked={checkedBox[i]} onChange={handleChangePackage}
+                  label={`${packageNames[i]}, Price: ₹ ${packagePrices[i]}`} />
+                })
+              }
+              {/* <Form.Check type="checkbox" id="box1" name='0' checked={checkedBox[0]} onChange={handleChangePackage}
                 label={`${packageNames[0]}, Price: ₹ ${packagePrices[0]}`} />
               <Form.Check type="checkbox" id="box2" name='1' checked={checkedBox[1]} onChange={handleChangePackage}
                 label={`${packageNames[1]}, Price: ₹ ${packagePrices[1]}`} />
@@ -146,7 +153,7 @@ export default function InvoiceForm() {
               <Form.Check type="checkbox" id="box5" name='4' checked={checkedBox[4]} onChange={handleChangePackage}
                 label={`${packageNames[4]}, Price: ₹ ${packagePrices[4]}`} />
               <Form.Check type="checkbox" id="box6" name='5' checked={checkedBox[5]} onChange={handleChangePackage}
-                label={`${packageNames[5]}, Price: ₹ ${packagePrices[5]}`} />
+                label={`${packageNames[5]}, Price: ₹ ${packagePrices[5]}`} /> */}
 
             </div>
 
